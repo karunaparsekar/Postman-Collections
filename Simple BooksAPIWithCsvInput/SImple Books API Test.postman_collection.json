@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "322dd866-d1e4-4fd3-b8ae-706b3b5d98a1",
+		"name": "SImple Books API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35285187",
+		"_collection_link": "https://www.postman.com/karunaparsekar/workspace/testlibrary/collection/35285187-322dd866-d1e4-4fd3-b8ae-706b3b5d98a1?action=share&source=collection_link&creator=35285187"
+	},
+	"item": [
+		{
+			"name": "DataDriven",
+			"item": [
+				{
+					"name": "orderBook1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonResponse = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify ststaus code is 201\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"order_id\",jsonResponse.orderId)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": {{BookId}},\r\n    \"customerName\": \"{{CustomerName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{simpleBaseUrl}}/orders",
+							"host": [
+								"{{simpleBaseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"\tpm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Veify order id is correct\", function () {\r",
+									"\tvar jsonData = pm.response.json();\r",
+									"\tpm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"order_id\"));\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "ed701ecda34b0e150f8cddad06f513310cdb20b86cd61a5b9d3335439c8a89cf",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{simpleBaseUrl}}/orders/{{order_id}}",
+							"host": [
+								"{{simpleBaseUrl}}"
+							],
+							"path": [
+								"orders",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.unset(\"order_id\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{simpleBaseUrl}}/orders/{{order_id}}",
+							"host": [
+								"{{simpleBaseUrl}}"
+							],
+							"path": [
+								"orders",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "createToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"clientName\": \"PostmanTest\",\r\n    \"clientEmail\": \"johnshinde@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{simpleBaseUrl}}/api-clients",
+					"host": [
+						"{{simpleBaseUrl}}"
+					],
+					"path": [
+						"api-clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{simpleBaseUrl}}/status",
+					"host": [
+						"{{simpleBaseUrl}}"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{simpleBaseUrl}}/books",
+					"host": [
+						"{{simpleBaseUrl}}"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBook1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{simpleBaseUrl}}/books/tCReFxdl9bAjCmnvXIuaG",
+					"host": [
+						"{{simpleBaseUrl}}"
+					],
+					"path": [
+						"books",
+						"tCReFxdl9bAjCmnvXIuaG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ed701ecda34b0e150f8cddad06f513310cdb20b86cd61a5b9d3335439c8a89cf",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{simpleBaseUrl}}/orders",
+					"host": [
+						"{{simpleBaseUrl}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerName\": \"Kyle Shah\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{simpleBaseUrl}}/orders/tCReFxdl9bAjCmnvXIuaG",
+					"host": [
+						"{{simpleBaseUrl}}"
+					],
+					"path": [
+						"orders",
+						"tCReFxdl9bAjCmnvXIuaG"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "simpleBaseUrl",
+			"value": "https://simple-books-api.glitch.me"
+		},
+		{
+			"key": "bearerToken",
+			"value": "ed701ecda34b0e150f8cddad06f513310cdb20b86cd61a5b9d3335439c8a89cf",
+			"type": "string"
+		},
+		{
+			"key": "order_id",
+			"value": ""
+		}
+	]
+}
