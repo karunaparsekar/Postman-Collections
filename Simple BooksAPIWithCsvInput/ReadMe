@@ -1,8 +1,10 @@
 Library API Collection:
 
 Description: Contains requests and tests for APIs related to library management, including book information, borrowing records. It uses CSV Input for data parameterization.
+It uses bearer token for authorization for all the order related APIs.
 
 Data Driven Test using csv input:
-1 Post orderBook1 : 
-2 getOrderById : 
-3 deleteOrder : 
+1 Post orderBook1 : order book with payload containg bookId and customerName. These would be fetched from csv selected prior to runtime
+2 getOrderById : get order with order id stored in collection variable which was created during order creation
+3 deleteOrder : delete order with order id stored in collection variable which was created during order creation
+
