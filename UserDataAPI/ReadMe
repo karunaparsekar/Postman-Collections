@@ -1,1 +1,15 @@
 
+
+
+https://gorest.co.in API test 
+Description: Contains requests and tests for APIs at https://gorest.co.in for users with parameterised values generated during runtime
+
+The collections include tests with examples of API chaining  with parameterised values generated during runtime for name, email, gender:
+
+1 POST createUser : create user with parameterised values for name, email, gender created during runtime in Pre request script
+
+2 GET getUser : get user for id fetched from collection variable and verify json response for user info
+
+3 PATCH updateUser: update user email with unique email generated in pre request script
+
+4 DEL deleteUser: delete user for id fetched from collection variable
