@@ -1,0 +1,69 @@
+# Google Drive Image Upload API Tests
+
+This repository contains a Postman collection for testing image upload functionality to Google Drive using OAuth 2.0 for authentication.
+
+## Overview
+
+This Postman collection demonstrates how to:
+1. Authenticate with Google Drive API using OAuth 2.0.
+2. Upload an image to Google Drive.
+3. Verify the upload by retrieving the file metadata.
+
+## Prerequisites
+
+Before you start, make sure you have the following:
+- A Google Cloud project with Google Drive API enabled.
+- OAuth 2.0 client credentials (Client ID and Client Secret).
+- Postman installed on your machine.
+
+## Setup
+
+### Step 1: Configure Google Cloud Project
+
+1. **Create a Google Cloud Project**:
+    - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+    - Create a new project.
+
+2. **Enable Google Drive API**:
+    - Navigate to `APIs & Services` > `Library`.
+    - Search for "Google Drive API" and enable it.
+
+3. **Create OAuth 2.0 Credentials**:
+    - Go to `APIs & Services` > `Credentials`.
+    - Click `Create Credentials` and select `OAuth 2.0 Client ID`.
+    - Configure the consent screen and create the client ID.
+    - Download the JSON file containing your client ID and secret.
+
+### Step 2: Configure Postman
+
+1. **Import the Collection**:
+    - Download the Postman collection JSON file from this repository.
+    - Open Postman and click `Import` in the top left corner.
+    - Select the JSON file to import the collection.
+
+2. **Set Up Environment Variables**:
+    - Create a new environment in Postman with the following variables:
+      - `client_id`: Your OAuth 2.0 Client ID.
+      - `client_secret`: Your OAuth 2.0 Client Secret.
+      - `refresh_token`: Your OAuth 2.0 Refresh Token (you can get this after the initial OAuth setup).
+      - `access_token`: This will be populated by the OAuth token request.
+     
+### Step 3: Obtain OAuth 2.0 Tokens
+
+1. **Authorize OAuth 2.0**:
+    - In Postman, find the `Access Token` request in the collection.
+    - Click `Send` to initiate the OAuth flow and get the access token.
+    - The access token will be saved in the `access_token` environment variable.
+
+## Running the Tests
+
+### 1. Upload Image to Google Drive
+- **Request**: `Upload Image`
+  - Method: `POST`
+  - URL: https://www.googleapis.com/upload/drive/v3/files?uploadType=media
+  - Headers: 
+    - `Authorization`: `Bearer {{access_token}}`
+    - `Content-Type`: `image/jpeg`
+  - Body: Form-data
+    - `metadata`: Contains JSON metadata for the file (e.g., name, parents).
+    - `file`: The image file to be uploaded.
