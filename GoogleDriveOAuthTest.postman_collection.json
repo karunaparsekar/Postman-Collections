@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "9d6a109a-1feb-440a-ada0-0efa10b80751",
+		"name": "GoogleDriveOAuthTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35285187",
+		"_collection_link": "https://www.postman.com/karunaparsekar/workspace/testlibrary/collection/35285187-9d6a109a-1feb-440a-ada0-0efa10b80751?action=share&source=collection_link&creator=35285187"
+	},
+	"item": [
+		{
+			"name": "random",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/drive&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=https://localhost:8080&client_id=829203017957-rnct35eas5klescncde798dunn70k3j1.apps.googleusercontent.com",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"google",
+						"com"
+					],
+					"path": [
+						"o",
+						"oauth2",
+						"v2",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "scope",
+							"value": "https://www.googleapis.com/auth/drive"
+						},
+						{
+							"key": "access_type",
+							"value": "offline"
+						},
+						{
+							"key": "include_granted_scopes",
+							"value": "true"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "state",
+							"value": "state_parameter_passthrough_value"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://localhost:8080"
+						},
+						{
+							"key": "client_id",
+							"value": "829203017957-rnct35eas5klescncde798dunn70k3j1.apps.googleusercontent.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCode",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8080/?state=state_parameter_passthrough_value&code=4/0ATx3LY6YEZv8jdFHjFqrj199L2Ob78cK9RlP_3nwXO7yBwncPpb9vMv6vfomNgxNPA2WwA&scope=https://www.googleapis.com/auth/drive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "state",
+							"value": "state_parameter_passthrough_value"
+						},
+						{
+							"key": "code",
+							"value": "4/0ATx3LY6YEZv8jdFHjFqrj199L2Ob78cK9RlP_3nwXO7yBwncPpb9vMv6vfomNgxNPA2WwA"
+						},
+						{
+							"key": "scope",
+							"value": "https://www.googleapis.com/auth/drive"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accesstoken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://oauth2.googleapis.com/token?client_id=829203017957-rnct35eas5klescncde798dunn70k3j1.apps.googleusercontent.com&client_secret={{clientSecret}}&code=4/0ATx3LY6YEZv8jdFHjFqrj199L2Ob78cK9RlP_3nwXO7yBwncPpb9vMv6vfomNgxNPA2WwA&grant_type=authorization_code&redirect_uri=https://localhost:8080",
+					"protocol": "https",
+					"host": [
+						"oauth2",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "829203017957-rnct35eas5klescncde798dunn70k3j1.apps.googleusercontent.com"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{clientSecret}}"
+						},
+						{
+							"key": "code",
+							"value": "4/0ATx3LY6YEZv8jdFHjFqrj199L2Ob78cK9RlP_3nwXO7yBwncPpb9vMv6vfomNgxNPA2WwA"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://localhost:8080"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadFile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "image/jpeg"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/D:/Postman/AppLogo.jpg"
+					}
+				},
+				"url": {
+					"raw": "https://www.googleapis.com/upload/drive/v3/files?uploadType=media",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"upload",
+						"drive",
+						"v3",
+						"files"
+					],
+					"query": [
+						{
+							"key": "uploadType",
+							"value": "media"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": "ya29.a0AXooCgsYt-Oam0VDVldkYaAtVptfcC7PLeWoVfPVKFu3x8vaN5NU3Bcp5zpdX3NnjoGb3KK12au4YCiianIe8QE2cSg_R_DSqYHsSNg_xgQ1ziqBJrkUWzxtmRbKuAoF2hUKBBMi20K_fsvNijCpebUrMTsEOfE-csaJaCgYKAYMSARASFQHGX2Mihnk08H0OtqoavtfcmEziYA0171"
+		},
+		{
+			"key": "clientSecret",
+			"value": "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"
+		}
+	]
+}
