@@ -1,0 +1,52 @@
+{
+  "name": "ABC High School",
+  "location": "Cary, NC",
+  "students": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "age": 17,
+	  "courses":[
+		  "math",
+		  "science",
+		  "english"
+	  ],
+      "grades": {
+        "math": 90,
+        "science": 85,
+        "english": 78
+      }
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "age": 18,
+	  "courses":[
+		  "math",
+		  "science",
+		  "english"
+	  ],
+      "grades": {
+        "math": 92,
+        "science": 89,
+        "english": 91
+      }
+    },
+    {
+      "id": "3",
+      "name": "Jane Shah",
+      "age": 19,
+	  "courses":[
+		  "math",
+		  "science",
+		  "english"
+	  ],
+      "grades": {
+        "math": 92,
+        "science": 89,
+        "english": 91,
+        "Chemistry": 56
+      }
+    }
+  ]
+}
