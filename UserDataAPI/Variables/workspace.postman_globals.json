@@ -1,0 +1,26 @@
+{
+	"id": "d1cda378-d38a-4efc-8627-7049884bb093",
+	"values": [
+		{
+			"key": "companyCode",
+			"value": "RSP",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "restUrl",
+			"value": "https://gorest.co.in",
+			"enabled": true
+		},
+		{
+			"key": "access_token",
+			"value": "ya29.a0AXooCgtxm01rUwajr7hWBFLkLXj3YJ4JClh_PPwCEXjxTa6A_19KWCyCRlgNfCYOKEp2NJaSaaLZGpCPxLQlMQjTLOJMksIIi5mQ0QC-Db2_zzqhmK4O7N1RbtBhdXqDqDHiwkDjKpxHxXIpZV-9B-QUF0SJQ31TsAaCgYKAUISARASFQHGX2MiU_7VHEK8DfxjNAbPMW0wKw0169",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2024-06-27T15:49:32.613Z",
+	"_postman_exported_using": "Postman/11.2.13"
+}
